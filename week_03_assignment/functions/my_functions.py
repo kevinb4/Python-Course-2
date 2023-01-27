@@ -24,7 +24,7 @@ def save_prompt(config_data, original_data):
     """
     response = input("Would you like to (S)ave your changes or (D)iscard them? (enter S or D): ")
 
-    if response.lower() == "s": # only check for s since discarding requires no further code
+    if response.lower() == "s":
         with open("text_files/config_override.json", 'w') as json_obj:
             json.dump(config_data, json_obj)
         
