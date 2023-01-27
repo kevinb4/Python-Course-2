@@ -25,23 +25,30 @@
 <tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
 <td class="singlecolumn"><dl><dt><a name="-add"><strong>add</strong></a>(config_data)</dt><dd><span class="code">Handles&nbsp;adding&nbsp;new&nbsp;data&nbsp;to&nbsp;the&nbsp;config<br>
 Arguments:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;config_data&nbsp;[dict]&nbsp;--&nbsp;the&nbsp;current&nbsp;config&nbsp;data&nbsp;dict</span></dd></dl>
+&nbsp;&nbsp;&nbsp;&nbsp;config_data&nbsp;[dict]&nbsp;--&nbsp;the&nbsp;current&nbsp;config&nbsp;data&nbsp;dict<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;save_prompt&nbsp;[dict]&nbsp;--&nbsp;the&nbsp;config&nbsp;data&nbsp;dict&nbsp;to&nbsp;send&nbsp;back&nbsp;to&nbsp;the&nbsp;main&nbsp;app&nbsp;so&nbsp;the&nbsp;user&nbsp;can&nbsp;keep&nbsp;making&nbsp;modifications&nbsp;with&nbsp;the&nbsp;updated&nbsp;items</span></dd></dl>
  <dl><dt><a name="-load_json"><strong>load_json</strong></a>(path)</dt><dd><span class="code">Loads&nbsp;the&nbsp;json&nbsp;file<br>
 Arguments:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;path&nbsp;[string]&nbsp;--&nbsp;location&nbsp;of&nbsp;the&nbsp;json&nbsp;file<br>
 Returns:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;[json&nbsp;dict/boolean]&nbsp;--&nbsp;will&nbsp;return&nbsp;the&nbsp;data&nbsp;that&nbsp;was&nbsp;loaded&nbsp;from&nbsp;the&nbsp;json&nbsp;file&nbsp;or&nbsp;returns&nbsp;false&nbsp;if&nbsp;it&nbsp;failed&nbsp;to&nbsp;load</span></dd></dl>
+&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;[dict/boolean]&nbsp;--&nbsp;will&nbsp;return&nbsp;the&nbsp;data&nbsp;that&nbsp;was&nbsp;loaded&nbsp;from&nbsp;the&nbsp;json&nbsp;file&nbsp;or&nbsp;returns&nbsp;false&nbsp;if&nbsp;it&nbsp;failed&nbsp;to&nbsp;load</span></dd></dl>
  <dl><dt><a name="-modify"><strong>modify</strong></a>(config_data, required_data)</dt><dd><span class="code">Handles&nbsp;modifying&nbsp;and&nbsp;removing&nbsp;values&nbsp;in&nbsp;the&nbsp;config&nbsp;data<br>
 Arguments:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;config_data&nbsp;[dict]&nbsp;--&nbsp;the&nbsp;current&nbsp;config&nbsp;data&nbsp;dict<br>
-&nbsp;&nbsp;&nbsp;&nbsp;required_data&nbsp;[dict]&nbsp;--&nbsp;the&nbsp;required&nbsp;items&nbsp;that&nbsp;cannot&nbsp;be&nbsp;deleted</span></dd></dl>
+&nbsp;&nbsp;&nbsp;&nbsp;required_data&nbsp;[dict]&nbsp;--&nbsp;the&nbsp;required&nbsp;items&nbsp;that&nbsp;cannot&nbsp;be&nbsp;deleted<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;save_prompt&nbsp;[dict]&nbsp;--&nbsp;the&nbsp;config&nbsp;data&nbsp;dict&nbsp;to&nbsp;send&nbsp;back&nbsp;to&nbsp;the&nbsp;main&nbsp;app&nbsp;so&nbsp;the&nbsp;user&nbsp;can&nbsp;keep&nbsp;making&nbsp;modifications&nbsp;with&nbsp;the&nbsp;updated&nbsp;items</span></dd></dl>
  <dl><dt><a name="-required_input"><strong>required_input</strong></a>(question)</dt><dd><span class="code">Validates&nbsp;input&nbsp;to&nbsp;make&nbsp;sure&nbsp;something&nbsp;was&nbsp;entered<br>
 Arguments:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;question&nbsp;[string]&nbsp;--&nbsp;contains&nbsp;what&nbsp;the&nbsp;program&nbsp;will&nbsp;ask&nbsp;for&nbsp;the&nbsp;user<br>
 Returns:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;[string]&nbsp;--&nbsp;what&nbsp;the&nbsp;user&nbsp;entered</span></dd></dl>
- <dl><dt><a name="-save_prompt"><strong>save_prompt</strong></a>(config_data)</dt><dd><span class="code">Prompts&nbsp;the&nbsp;user&nbsp;if&nbsp;they'd&nbsp;like&nbsp;to&nbsp;save&nbsp;their&nbsp;changes<br>
+ <dl><dt><a name="-save_prompt"><strong>save_prompt</strong></a>(config_data, original_data)</dt><dd><span class="code">Prompts&nbsp;the&nbsp;user&nbsp;if&nbsp;they'd&nbsp;like&nbsp;to&nbsp;save&nbsp;their&nbsp;changes<br>
 Arguments:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;config_data&nbsp;[dict]&nbsp;--&nbsp;the&nbsp;current&nbsp;config&nbsp;data&nbsp;dict</span></dd></dl>
+&nbsp;&nbsp;&nbsp;&nbsp;config_data&nbsp;[dict]&nbsp;--&nbsp;the&nbsp;current&nbsp;config&nbsp;data&nbsp;dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;original_data&nbsp;[dict]&nbsp;--&nbsp;the&nbsp;unmodified&nbsp;config&nbsp;data&nbsp;dict<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;config_data&nbsp;[dict]&nbsp;--&nbsp;will&nbsp;return&nbsp;either&nbsp;the&nbsp;changed&nbsp;data&nbsp;or&nbsp;original&nbsp;data&nbsp;depending&nbsp;on&nbsp;the&nbsp;user's&nbsp;choice</span></dd></dl>
 </td></tr></table>
 </body></html>

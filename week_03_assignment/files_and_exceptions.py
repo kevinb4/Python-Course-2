@@ -17,11 +17,16 @@ if reqired_data:
         print(f"{counter}. {value} - \"{data}\"")
         counter += 1
 
-    option = input("\nPlease use the following menu to pick an option\nA - Add a configuration item\nM - Modify/Remove a configeration item\n> ")
+    ask = True
 
-    if option.lower() == "m":
-        modify(config_data, reqired_data)
-    elif option.lower() == "a":
-        add(config_data)
-    else:
-        print("Unknown response, please enter a valid option.")
+    while ask:
+        option = input("\nPlease use the following menu to pick an option\nA - Add a configuration item\nM - Modify/Remove a configeration item\nE - Exit the app\n> ")
+
+        if option.lower() == "m":
+            config_data = modify(config_data, reqired_data)
+        elif option.lower() == "a":
+            config_data = add(config_data)
+        elif option.lower() == "e":
+            ask = False
+        else:
+            print("Unknown response, please enter a valid option.")
