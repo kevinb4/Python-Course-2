@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module my_functions</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title">my_functions</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:e%3A%5Codrive%5Cgoogle%20drive%5Ccollege%5Cwalsh%5Cit-412%5Cweek%207%5Cweek_07_python_database_assignment%5Cfunctions%5Cmy_functions.py">e:\odrive\google drive\college\walsh\it-412\week 7\week_07_python_database_assignment\functions\my_functions.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-add_vehicle"><strong>add_vehicle</strong></a>(db, vehicle)</dt><dd><span class="code">Adds&nbsp;a&nbsp;vehicle&nbsp;to&nbsp;the&nbsp;database<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;db&nbsp;[class]&nbsp;--&nbsp;the&nbsp;database&nbsp;class&nbsp;to&nbsp;execute&nbsp;the&nbsp;query<br>
+&nbsp;&nbsp;&nbsp;&nbsp;vehicle&nbsp;[dict]&nbsp;--&nbsp;all&nbsp;attributes&nbsp;tied&nbsp;to&nbsp;the&nbsp;current&nbsp;vehicle</span></dd></dl>
+ <dl><dt><a name="-build_dict"><strong>build_dict</strong></a>(items)</dt><dd><span class="code">Builds&nbsp;a&nbsp;string&nbsp;that&nbsp;contains&nbsp;the&nbsp;key&nbsp;and&nbsp;value&nbsp;that&nbsp;contain&nbsp;values<br>
+Attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;items&nbsp;[dict]&nbsp;--&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;items&nbsp;to&nbsp;write&nbsp;out<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;msg&nbsp;[string]&nbsp;--&nbsp;a&nbsp;formatted&nbsp;string&nbsp;containing&nbsp;all&nbsp;items&nbsp;that&nbsp;aren't&nbsp;empty</span></dd></dl>
+ <dl><dt><a name="-build_list"><strong>build_list</strong></a>(items)</dt><dd><span class="code">Builds&nbsp;a&nbsp;string&nbsp;that&nbsp;contains&nbsp;the&nbsp;items&nbsp;in&nbsp;a&nbsp;list<br>
+Attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;items&nbsp;[list]&nbsp;--&nbsp;a&nbsp;list&nbsp;of&nbsp;items&nbsp;to&nbsp;write&nbsp;out<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;msg&nbsp;[string]&nbsp;--&nbsp;a&nbsp;formatted&nbsp;string&nbsp;containing&nbsp;all&nbsp;the&nbsp;passed&nbsp;items</span></dd></dl>
+ <dl><dt><a name="-build_values"><strong>build_values</strong></a>(amount)</dt><dd><span class="code">Builds&nbsp;a&nbsp;string&nbsp;that&nbsp;contains&nbsp;a&nbsp;specified&nbsp;number&nbsp;of&nbsp;%s&nbsp;to&nbsp;use&nbsp;for&nbsp;a&nbsp;query<br>
+Attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;amount&nbsp;[int]&nbsp;--&nbsp;used&nbsp;for&nbsp;the&nbsp;loop<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;msg&nbsp;[string]&nbsp;--&nbsp;a&nbsp;formatted&nbsp;string&nbsp;containing&nbsp;the&nbsp;specified&nbsp;number&nbsp;of&nbsp;%s</span></dd></dl>
+ <dl><dt><a name="-get_attribute"><strong>get_attribute</strong></a>(vehicle_dict)</dt><dd><span class="code">Gets&nbsp;the&nbsp;selecting&nbsp;from&nbsp;the&nbsp;user&nbsp;of&nbsp;which&nbsp;item&nbsp;they'd&nbsp;like&nbsp;to&nbsp;edit<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;vehicle_dict&nbsp;[dict]&nbsp;--&nbsp;a&nbsp;dictionary&nbsp;containing&nbsp;information&nbsp;about&nbsp;the&nbsp;vehicle<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data_type&nbsp;[string]&nbsp;--&nbsp;the&nbsp;valid&nbsp;type&nbsp;of&nbsp;data/attribute&nbsp;to&nbsp;modify</span></dd></dl>
+ <dl><dt><a name="-get_input"><strong>get_input</strong></a>(data_type, required=True)</dt><dd><span class="code">Obtains&nbsp;the&nbsp;data&nbsp;and&nbsp;verifies&nbsp;it<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data_type&nbsp;[string]&nbsp;--&nbsp;the&nbsp;type&nbsp;of&nbsp;data&nbsp;to&nbsp;get<br>
+&nbsp;&nbsp;&nbsp;&nbsp;required&nbsp;[boolean]&nbsp;--&nbsp;whether&nbsp;or&nbsp;not&nbsp;the&nbsp;type&nbsp;of&nbsp;data&nbsp;is&nbsp;required<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;[string]&nbsp;--&nbsp;the&nbsp;verified&nbsp;data</span></dd></dl>
+ <dl><dt><a name="-get_vehicle"><strong>get_vehicle</strong></a>(db)</dt><dd><span class="code">Allows&nbsp;the&nbsp;user&nbsp;to&nbsp;select&nbsp;which&nbsp;vehicle&nbsp;they&nbsp;want&nbsp;to&nbsp;either&nbsp;modify&nbsp;or&nbsp;remove<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;db&nbsp;[class]&nbsp;--&nbsp;used&nbsp;to&nbsp;get&nbsp;the&nbsp;list&nbsp;of&nbsp;items&nbsp;in&nbsp;the&nbsp;database<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;result&nbsp;[dict]&nbsp;--&nbsp;returns&nbsp;a&nbsp;dict&nbsp;of&nbsp;the&nbsp;selected&nbsp;vehicle</span></dd></dl>
+ <dl><dt><a name="-long_list_vehicles"><strong>long_list_vehicles</strong></a>(db)</dt><dd><span class="code">Prints&nbsp;a&nbsp;detailed&nbsp;list&nbsp;of&nbsp;vehiles,&nbsp;one&nbsp;attribute&nbsp;per&nbsp;line<br>
+Attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;db&nbsp;[class]&nbsp;--&nbsp;the&nbsp;db&nbsp;class&nbsp;used&nbsp;to&nbsp;execute&nbsp;the&nbsp;query</span></dd></dl>
+ <dl><dt><a name="-modify_vehicle"><strong>modify_vehicle</strong></a>(db, id, data_type, data)</dt><dd><span class="code">Modifies&nbsp;the&nbsp;current&nbsp;vehicle<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;db&nbsp;[class]&nbsp;--&nbsp;used&nbsp;to&nbsp;execute&nbsp;the&nbsp;query<br>
+&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;[int]&nbsp;--&nbsp;the&nbsp;primary&nbsp;key&nbsp;of&nbsp;the&nbsp;vehicle<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data_type&nbsp;[string]&nbsp;--&nbsp;contains&nbsp;the&nbsp;attribute&nbsp;of&nbsp;which&nbsp;item&nbsp;the&nbsp;user&nbsp;is&nbsp;modifying<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;[string]&nbsp;--&nbsp;the&nbsp;new&nbsp;value&nbsp;for&nbsp;the&nbsp;attribute</span></dd></dl>
+ <dl><dt><a name="-remove_vehicle"><strong>remove_vehicle</strong></a>(db, id)</dt><dd><span class="code">Removes&nbsp;a&nbsp;vehicle&nbsp;from&nbsp;the&nbsp;database<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;db&nbsp;[class]&nbsp;--&nbsp;used&nbsp;to&nbsp;execute&nbsp;the&nbsp;query<br>
+&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;[int]&nbsp;--&nbsp;the&nbsp;primary&nbsp;key&nbsp;of&nbsp;the&nbsp;vehicle</span></dd></dl>
+ <dl><dt><a name="-short_list_vehicles"><strong>short_list_vehicles</strong></a>(db)</dt><dd><span class="code">Prints&nbsp;a&nbsp;list&nbsp;of&nbsp;one&nbsp;vehile&nbsp;per&nbsp;line&nbsp;with&nbsp;attributes<br>
+Attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;db&nbsp;[class]&nbsp;--&nbsp;the&nbsp;db&nbsp;class&nbsp;used&nbsp;to&nbsp;execute&nbsp;the&nbsp;query</span></dd></dl>
+ <dl><dt><a name="-underscore_add"><strong>underscore_add</strong></a>(data)</dt><dd><span class="code">A&nbsp;small&nbsp;function&nbsp;to&nbsp;replace&nbsp;spaces&nbsp;with&nbsp;underscores<br>
+Attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;[string]&nbsp;--&nbsp;the&nbsp;passed&nbsp;string&nbsp;to&nbsp;modify<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;[string]&nbsp;--&nbsp;the&nbsp;passed&nbsp;string&nbsp;that&nbsp;has&nbsp;underscores&nbsp;instead&nbsp;of&nbsp;spaces</span></dd></dl>
+ <dl><dt><a name="-underscore_remove"><strong>underscore_remove</strong></a>(data)</dt><dd><span class="code">A&nbsp;small&nbsp;function&nbsp;to&nbsp;replace&nbsp;underscores&nbsp;with&nbsp;spaces<br>
+Attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;[string]&nbsp;--&nbsp;the&nbsp;passed&nbsp;string&nbsp;to&nbsp;modify<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;[string]&nbsp;--&nbsp;the&nbsp;passed&nbsp;string&nbsp;that&nbsp;has&nbsp;spaces&nbsp;instead&nbsp;of&nbsp;underscores</span></dd></dl>
+ <dl><dt><a name="-validate_char"><strong>validate_char</strong></a>(passed_input, data_type, check_type)</dt><dd><span class="code">Validates&nbsp;date&nbsp;or&nbsp;time<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;[string]&nbsp;--&nbsp;the&nbsp;user&nbsp;inputted&nbsp;data&nbsp;to&nbsp;test<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data_type&nbsp;[string]&nbsp;--&nbsp;the&nbsp;type&nbsp;of&nbsp;data&nbsp;to&nbsp;test<br>
+&nbsp;&nbsp;&nbsp;&nbsp;check_type&nbsp;[string]&nbsp;--&nbsp;whether&nbsp;the&nbsp;char&nbsp;list&nbsp;is&nbsp;run&nbsp;against&nbsp;allowed&nbsp;characters&nbsp;or&nbsp;disallowed&nbsp;characters<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;boolean&nbsp;--&nbsp;whether&nbsp;the&nbsp;test&nbsp;passed&nbsp;or&nbsp;not</span></dd></dl>
+ <dl><dt><a name="-validate_input"><strong>validate_input</strong></a>(data)</dt><dd><span class="code">Validates&nbsp;that&nbsp;data&nbsp;was&nbsp;entered<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;[string]&nbsp;--&nbsp;passed&nbsp;user&nbsp;input<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;true/false&nbsp;[boolean]&nbsp;--&nbsp;returns&nbsp;true&nbsp;if&nbsp;the&nbsp;user&nbsp;entered&nbsp;something,&nbsp;false&nbsp;if&nbsp;not</span></dd></dl>
+ <dl><dt><a name="-validate_price"><strong>validate_price</strong></a>(price)</dt><dd><span class="code">Validates&nbsp;the&nbsp;price&nbsp;of&nbsp;a&nbsp;vehicle&nbsp;(aka&nbsp;if&nbsp;it's&nbsp;a&nbsp;float&nbsp;value)<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;price&nbsp;[string]&nbsp;--&nbsp;passed&nbsp;user&nbsp;input<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;true/false&nbsp;[boolean]&nbsp;--&nbsp;if&nbsp;it's&nbsp;a&nbsp;float&nbsp;or&nbsp;not</span></dd></dl>
+</td></tr></table>
+</body></html>
