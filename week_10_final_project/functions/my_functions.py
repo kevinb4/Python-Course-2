@@ -6,6 +6,7 @@ import json
 def add_customer(db, customer):
     """Adds the customer to both databases
     Arguments:
+        db [class] -- the database class to execute the query
         customer [dict] -- data containing customer information"""
     # try adding to the mailings table
     try:
@@ -152,7 +153,10 @@ def get_input(data_type, required = True):
     return data
 
 def print_db(db, table):
-    """Prints out all rows in the database table"""
+    """Prints out all rows in the database table
+    Arguments:
+        db [class] -- the database class to execute the query
+        table [string] -- which table to print"""
     results = db.executeSelectQuery(f"SELECT * FROM {table};")
     print("") # padding
 
@@ -185,8 +189,11 @@ def print_db(db, table):
 
     print("") # padding
 
-def save_to_crm_db(db, data):
-    """Saves the passed data to the CRM database"""
+def save_to_crm_db(db, customer):
+    """Saves the passed data to the CRM database
+    Arguments:
+        db [class] -- the database class to execute the query
+        customer [dict] -- the customer dict containing all the customer data"""
     # first we need to empty the current table
     db.executeQuery("TRUNCATE TABLE crm_data;")
     db.conn.commit()
@@ -195,7 +202,7 @@ def save_to_crm_db(db, data):
     query = "INSERT INTO crm_data (f_name, l_name, address, city, state, zip, company, primary_phone, secondary_phone, email_address)\nVALUES"
     values = []
 
-    for line in data:
+    for line in customer:
         # now we need to add all the data from the dict
         query += f"({build_values(10)}),\n" # add %s for sanitization for every row + value
         values += [line['first_name'], line['last_name'], line['address'], line['city'], line['state'], line['zip'], line['company'], line['primary_phone'], line['secondary_phone'], line['email']] # add all relavent values
@@ -208,16 +215,19 @@ def save_to_crm_db(db, data):
     except:
         print("There was an issue saving the values to the drm_data database.")
 
-def save_to_CSV(path, data):
-    """Saves the data passed to a csv file"""
+def save_to_CSV(path, customer):
+    """Saves the data passed to a csv file
+    Arguments:
+        path [string] -- the file path to write to
+        customer [dict] -- the customer dict containing all the customer data"""
     csv = ""
 
-    for item in data[0]: # build the header row using the keys in the dict
+    for item in customer[0]: # build the header row using the keys in the dict
         csv += f"{item},"
     
     csv = csv[:-1] # remove the last comma
 
-    for data_dict in data: # loop through the entire dict
+    for data_dict in customer: # loop through the entire dict
         csv += "\n" # add a new line for each row
         for item in data_dict.values(): # for each row in the data, add each value with a comma
             csv += f"{item},"
@@ -229,13 +239,19 @@ def save_to_CSV(path, data):
         csv_output.write(csv)
 
 def save_to_JSON(path, data):
-    """Saves the passed data to a JSON file"""
+    """Saves the passed data to a JSON file
+    Arguments:
+        path [string] -- the file path to write to
+        customer [dict] -- the customer dict containing all the customer data"""
     backup_file(path) # make sure not to overwrite the file
     with open(path, "w") as json_output:
         json.dump(data, json_output)
 
-def save_to_mailings_db(db, data):
-    """Saves the passed data to the mailings database"""
+def save_to_mailings_db(db, customer):
+    """Saves the passed data to the mailings database
+    Arguments:
+        db [class] -- the database class to execute the query
+        customer [dict] -- the customer dict containing all the customer data"""
     # first we need to empty the current table
     db.executeQuery("TRUNCATE TABLE mailings;")
     db.conn.commit()
@@ -244,7 +260,7 @@ def save_to_mailings_db(db, data):
     query = "INSERT INTO mailings (name, company, address)\nVALUES"
     values = []
 
-    for line in data:
+    for line in customer:
         # now we need to add all the data from the dict
         query += f"({build_values(3)}),\n" # add %s for sanitization for every row + value
         values += [build_name(line), line['company'], f"{build_address(line)}\n"] # add all relavent values
