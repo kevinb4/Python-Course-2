@@ -7,7 +7,7 @@ db = DB_Connect('root', '1234', 'python_final')
 ask = True
 
 while ask:
-    response = input("What would you like to do? Enter the number of the item you want:\n1. Import a new data file\n2. Show data currently in a database\n3. Add a record to the databases\n4. Edit a record\n5. Exit program\n> ")
+    response = input("What would you like to do? Enter the number of the item you want:\n1. Import a new data file\n2. Show data currently in a database\n3. Add a record to the databases\n4. Edit a record\n5. Remove a record\n6. Exit program\n> ")
 
     if response == "1":
         data = import_data()
@@ -22,16 +22,11 @@ while ask:
         else:
             print("\nThere was an issue reading the file. Please make sure the customer_export.txt is located in the text_files folder.\n")
     elif response == "2":
-        response = input("Which database would you like to print out? (c)rm data or (m)ailings? (Enter c or m): ")
-
-        if response.lower() == "c":
-            print_db(db, "crm_data")
-        elif response.lower() == "m":
-            print_db(db, "mailings")
-        else:
-            print("\nInvalid response, please enter c or m.\n")
+        table = get_database()
+        
+        print_db(db, table)
     elif response == "3":
-        required = ["first_name", "last_name", "company", "address", "city", "state", "zip", "primary_phone"]
+        required = ["f_name", "l_name", "company", "address", "city", "state", "zip", "primary_phone"]
         fields = list(required) + ["secondary_phone", "email"]
         customer = {}
         
@@ -42,9 +37,24 @@ while ask:
                 customer[item] = data
 
         add_customer(db, customer)
-    # elif response == "4":
-        # TODO
+    elif response == "4":
+        required = {"crm_data": ["f_name", "l_name", "company", "address", "city", "state", "zip", "primary_phone"], "mailings": ["name", "company", "address"]}
+        table = get_database() # get the table the user would like to edit
+        customer_dict = get_customer(db, table) # get the customer object from the specified table
+        data_type = get_attribute(customer_dict) # get the attribute the user wants to modify
+        data = get_input(data_type, data_type in required[table]) # get the data the user wants to modify
+
+        modify_customer(db, customer_dict['id'], table, data_type, data)
     elif response == "5":
+        table = get_database()
+        customer_dict = get_customer(db, table)
+        response = input("Are you sure you want to delete this customer? (Y/N): ") # make sure the user wants to remove it
+
+        if response.lower() == "y":
+            remove_customer(db, customer_dict['id'], table)
+        else:
+            print("The customer was not removed\n")
+    elif response == "6":
         ask = False
     else:
-        print("\nInvalid response. Please enter a number 1-5.\n")
+        print("\nInvalid response. Please enter a number 1-6.\n")

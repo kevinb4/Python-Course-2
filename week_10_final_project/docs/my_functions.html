@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module my_functions</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title">my_functions</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:e%3A%5Codrive%5Cgoogle%20drive%5Ccollege%5Cwalsh%5Cit-412%5Cweek%208-10%5Cfunctions%5Cmy_functions.py">e:\odrive\google drive\college\walsh\it-412\week 8-10\functions\my_functions.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="json.html">json</a><br>
+</td><td class="multicolumn"><a href="os.html">os</a><br>
+</td><td class="multicolumn"><a href="shutil.html">shutil</a><br>
+</td><td class="multicolumn"><a href="time.html">time</a><br>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-add_customer"><strong>add_customer</strong></a>(db, customer_dict)</dt><dd><span class="code">Adds&nbsp;the&nbsp;customer&nbsp;to&nbsp;both&nbsp;databases<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;db&nbsp;[class]&nbsp;--&nbsp;the&nbsp;database&nbsp;class&nbsp;to&nbsp;execute&nbsp;the&nbsp;query<br>
+&nbsp;&nbsp;&nbsp;&nbsp;customer_dict&nbsp;[dictionary]&nbsp;--&nbsp;data&nbsp;containing&nbsp;customer&nbsp;information</span></dd></dl>
+ <dl><dt><a name="-backup_file"><strong>backup_file</strong></a>(path)</dt><dd><span class="code">Checks&nbsp;to&nbsp;see&nbsp;if&nbsp;the&nbsp;file&nbsp;exists&nbsp;and&nbsp;if&nbsp;it&nbsp;does,&nbsp;add&nbsp;the&nbsp;date&nbsp;so&nbsp;the&nbsp;file&nbsp;does&nbsp;not&nbsp;get&nbsp;overwritten<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;path&nbsp;[string]&nbsp;--&nbsp;the&nbsp;path&nbsp;to&nbsp;the&nbsp;file</span></dd></dl>
+ <dl><dt><a name="-build_address"><strong>build_address</strong></a>(customer)</dt><dd><span class="code">Returns&nbsp;a&nbsp;string&nbsp;of&nbsp;concatenated&nbsp;address&nbsp;information<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;customer&nbsp;[dictionary]&nbsp;--&nbsp;the&nbsp;customer&nbsp;dict&nbsp;containing&nbsp;all&nbsp;the&nbsp;customer&nbsp;data<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;address&nbsp;[string]&nbsp;--&nbsp;formatted&nbsp;address&nbsp;as&nbsp;written&nbsp;on&nbsp;a&nbsp;letter</span></dd></dl>
+ <dl><dt><a name="-build_dict"><strong>build_dict</strong></a>(items)</dt><dd><span class="code">Builds&nbsp;a&nbsp;string&nbsp;that&nbsp;contains&nbsp;the&nbsp;key&nbsp;and&nbsp;value&nbsp;that&nbsp;contain&nbsp;values<br>
+Attributes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;items&nbsp;[dictionary]&nbsp;--&nbsp;a&nbsp;dictionary&nbsp;of&nbsp;items&nbsp;to&nbsp;write&nbsp;out<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;msg&nbsp;[string]&nbsp;--&nbsp;a&nbsp;formatted&nbsp;string&nbsp;containing&nbsp;all&nbsp;items&nbsp;that&nbsp;aren't&nbsp;empty</span></dd></dl>
+ <dl><dt><a name="-build_list"><strong>build_list</strong></a>(items)</dt><dd><span class="code">Builds&nbsp;a&nbsp;string&nbsp;that&nbsp;contains&nbsp;the&nbsp;items&nbsp;in&nbsp;a&nbsp;list<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;items&nbsp;[list]&nbsp;--&nbsp;a&nbsp;list&nbsp;of&nbsp;items&nbsp;to&nbsp;write&nbsp;out<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;msg&nbsp;[string]&nbsp;--&nbsp;a&nbsp;formatted&nbsp;string&nbsp;containing&nbsp;all&nbsp;the&nbsp;passed&nbsp;items</span></dd></dl>
+ <dl><dt><a name="-build_name"><strong>build_name</strong></a>(customer)</dt><dd><span class="code">Returns&nbsp;a&nbsp;string&nbsp;of&nbsp;a&nbsp;customer's&nbsp;full&nbsp;name&nbsp;(first&nbsp;and&nbsp;last)<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;customer&nbsp;[dictionary]&nbsp;--&nbsp;the&nbsp;customer&nbsp;dict&nbsp;containing&nbsp;all&nbsp;the&nbsp;customer&nbsp;data<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;[string]&nbsp;--&nbsp;formatted&nbsp;first&nbsp;and&nbsp;last&nbsp;name</span></dd></dl>
+ <dl><dt><a name="-build_values"><strong>build_values</strong></a>(amount)</dt><dd><span class="code">Builds&nbsp;a&nbsp;string&nbsp;that&nbsp;contains&nbsp;a&nbsp;specified&nbsp;number&nbsp;of&nbsp;%s&nbsp;to&nbsp;use&nbsp;for&nbsp;a&nbsp;query<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;amount&nbsp;[int]&nbsp;--&nbsp;used&nbsp;for&nbsp;the&nbsp;loop<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;msg&nbsp;[string]&nbsp;--&nbsp;a&nbsp;formatted&nbsp;string&nbsp;containing&nbsp;the&nbsp;specified&nbsp;number&nbsp;of&nbsp;%s</span></dd></dl>
+ <dl><dt><a name="-get_attribute"><strong>get_attribute</strong></a>(customer_dict)</dt><dd><span class="code">Gets&nbsp;the&nbsp;selecting&nbsp;from&nbsp;the&nbsp;user&nbsp;of&nbsp;which&nbsp;customer&nbsp;they'd&nbsp;like&nbsp;to&nbsp;edit<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;customer_dict&nbsp;[dictionary]&nbsp;--&nbsp;a&nbsp;dictionary&nbsp;containing&nbsp;information&nbsp;about&nbsp;the&nbsp;customer<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data_type&nbsp;[string]&nbsp;--&nbsp;the&nbsp;valid&nbsp;type&nbsp;of&nbsp;data/attribute&nbsp;to&nbsp;modify</span></dd></dl>
+ <dl><dt><a name="-get_customer"><strong>get_customer</strong></a>(db, table)</dt><dd><span class="code">Allows&nbsp;the&nbsp;user&nbsp;to&nbsp;select&nbsp;which&nbsp;customer&nbsp;they&nbsp;want&nbsp;to&nbsp;either&nbsp;modify&nbsp;or&nbsp;remove<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;db&nbsp;[class]&nbsp;--&nbsp;used&nbsp;to&nbsp;get&nbsp;the&nbsp;list&nbsp;of&nbsp;items&nbsp;in&nbsp;the&nbsp;database<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;result&nbsp;[dictionary]&nbsp;--&nbsp;returns&nbsp;a&nbsp;dict&nbsp;of&nbsp;the&nbsp;selected&nbsp;customer</span></dd></dl>
+ <dl><dt><a name="-get_database"><strong>get_database</strong></a>()</dt><dd><span class="code">Has&nbsp;the&nbsp;user&nbsp;select&nbsp;which&nbsp;database&nbsp;table&nbsp;they&nbsp;want<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;database&nbsp;[string]&nbsp;--&nbsp;the&nbsp;database&nbsp;the&nbsp;user&nbsp;selected</span></dd></dl>
+ <dl><dt><a name="-get_id_name"><strong>get_id_name</strong></a>(table)</dt><dd><span class="code">Returns&nbsp;the&nbsp;primary&nbsp;key&nbsp;attribute&nbsp;name&nbsp;based&nbsp;on&nbsp;the&nbsp;table&nbsp;passed<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;table&nbsp;[string]&nbsp;--&nbsp;name&nbsp;of&nbsp;the&nbsp;database&nbsp;table<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;id_name&nbsp;[string]&nbsp;--&nbsp;the&nbsp;primary&nbsp;key&nbsp;attribute&nbsp;name</span></dd></dl>
+ <dl><dt><a name="-get_input"><strong>get_input</strong></a>(data_type, required=True)</dt><dd><span class="code">Obtains&nbsp;the&nbsp;data&nbsp;and&nbsp;verifies&nbsp;it<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data_type&nbsp;[string]&nbsp;--&nbsp;the&nbsp;type&nbsp;of&nbsp;data&nbsp;to&nbsp;get<br>
+&nbsp;&nbsp;&nbsp;&nbsp;required&nbsp;[boolean]&nbsp;--&nbsp;whether&nbsp;or&nbsp;not&nbsp;the&nbsp;type&nbsp;of&nbsp;data&nbsp;is&nbsp;required<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;[string]&nbsp;--&nbsp;the&nbsp;verified&nbsp;data</span></dd></dl>
+ <dl><dt><a name="-import_data"><strong>import_data</strong></a>()</dt><dd><span class="code">Imports&nbsp;data&nbsp;from&nbsp;a&nbsp;text&nbsp;file&nbsp;dump<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data_list/false&nbsp;[list/boolean]&nbsp;--&nbsp;either&nbsp;returns&nbsp;the&nbsp;data&nbsp;if&nbsp;successful&nbsp;or&nbsp;false&nbsp;if&nbsp;not</span></dd></dl>
+ <dl><dt><a name="-modify_customer"><strong>modify_customer</strong></a>(db, id, table, data_type, data)</dt><dd><span class="code">Modifies&nbsp;the&nbsp;current&nbsp;customer<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;db&nbsp;[class]&nbsp;--&nbsp;used&nbsp;to&nbsp;execute&nbsp;the&nbsp;query<br>
+&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;[int]&nbsp;--&nbsp;the&nbsp;primary&nbsp;key&nbsp;of&nbsp;the&nbsp;customer<br>
+&nbsp;&nbsp;&nbsp;&nbsp;table&nbsp;[string]&nbsp;--&nbsp;the&nbsp;table&nbsp;being&nbsp;updated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data_type&nbsp;[string]&nbsp;--&nbsp;contains&nbsp;the&nbsp;attribute&nbsp;of&nbsp;which&nbsp;item&nbsp;the&nbsp;user&nbsp;is&nbsp;modifying<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;[string]&nbsp;--&nbsp;the&nbsp;new&nbsp;value&nbsp;for&nbsp;the&nbsp;attribute</span></dd></dl>
+ <dl><dt><a name="-print_db"><strong>print_db</strong></a>(db, table)</dt><dd><span class="code">Prints&nbsp;out&nbsp;all&nbsp;rows&nbsp;in&nbsp;the&nbsp;database&nbsp;table<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;db&nbsp;[class]&nbsp;--&nbsp;the&nbsp;database&nbsp;class&nbsp;to&nbsp;execute&nbsp;the&nbsp;query<br>
+&nbsp;&nbsp;&nbsp;&nbsp;table&nbsp;[string]&nbsp;--&nbsp;which&nbsp;table&nbsp;to&nbsp;print</span></dd></dl>
+ <dl><dt><a name="-print_short_db"><strong>print_short_db</strong></a>(db, table)</dt><dd><span class="code">Prints&nbsp;a&nbsp;list&nbsp;of&nbsp;one&nbsp;vehile&nbsp;per&nbsp;line&nbsp;with&nbsp;attributes<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;db&nbsp;[class]&nbsp;--&nbsp;the&nbsp;db&nbsp;class&nbsp;used&nbsp;to&nbsp;execute&nbsp;the&nbsp;query<br>
+&nbsp;&nbsp;&nbsp;&nbsp;table&nbsp;[string]&nbsp;--&nbsp;the&nbsp;table&nbsp;to&nbsp;select&nbsp;the&nbsp;data&nbsp;from</span></dd></dl>
+ <dl><dt><a name="-remove_customer"><strong>remove_customer</strong></a>(db, id, table)</dt><dd><span class="code">Removes&nbsp;a&nbsp;customer&nbsp;from&nbsp;the&nbsp;database<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;db&nbsp;[class]&nbsp;--&nbsp;used&nbsp;to&nbsp;execute&nbsp;the&nbsp;query<br>
+&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;[int]&nbsp;--&nbsp;the&nbsp;primary&nbsp;key&nbsp;of&nbsp;the&nbsp;customer</span></dd></dl>
+ <dl><dt><a name="-save_to_CSV"><strong>save_to_CSV</strong></a>(path, customer)</dt><dd><span class="code">Saves&nbsp;the&nbsp;data&nbsp;passed&nbsp;to&nbsp;a&nbsp;csv&nbsp;file<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;path&nbsp;[string]&nbsp;--&nbsp;the&nbsp;file&nbsp;path&nbsp;to&nbsp;write&nbsp;to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;customer&nbsp;[dictionary]&nbsp;--&nbsp;the&nbsp;customer&nbsp;dict&nbsp;containing&nbsp;all&nbsp;the&nbsp;customer&nbsp;data</span></dd></dl>
+ <dl><dt><a name="-save_to_JSON"><strong>save_to_JSON</strong></a>(path, data)</dt><dd><span class="code">Saves&nbsp;the&nbsp;passed&nbsp;data&nbsp;to&nbsp;a&nbsp;JSON&nbsp;file<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;path&nbsp;[string]&nbsp;--&nbsp;the&nbsp;file&nbsp;path&nbsp;to&nbsp;write&nbsp;to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;customer&nbsp;[dictionary]&nbsp;--&nbsp;the&nbsp;customer&nbsp;dict&nbsp;containing&nbsp;all&nbsp;the&nbsp;customer&nbsp;data</span></dd></dl>
+ <dl><dt><a name="-save_to_crm_db"><strong>save_to_crm_db</strong></a>(db, customer)</dt><dd><span class="code">Saves&nbsp;the&nbsp;passed&nbsp;data&nbsp;to&nbsp;the&nbsp;CRM&nbsp;database<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;db&nbsp;[class]&nbsp;--&nbsp;the&nbsp;database&nbsp;class&nbsp;to&nbsp;execute&nbsp;the&nbsp;query<br>
+&nbsp;&nbsp;&nbsp;&nbsp;customer&nbsp;[dictionary]&nbsp;--&nbsp;the&nbsp;customer&nbsp;dict&nbsp;containing&nbsp;all&nbsp;the&nbsp;customer&nbsp;data</span></dd></dl>
+ <dl><dt><a name="-save_to_mailings_db"><strong>save_to_mailings_db</strong></a>(db, customer)</dt><dd><span class="code">Saves&nbsp;the&nbsp;passed&nbsp;data&nbsp;to&nbsp;the&nbsp;mailings&nbsp;database<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;db&nbsp;[class]&nbsp;--&nbsp;the&nbsp;database&nbsp;class&nbsp;to&nbsp;execute&nbsp;the&nbsp;query<br>
+&nbsp;&nbsp;&nbsp;&nbsp;customer&nbsp;[dictionary]&nbsp;--&nbsp;the&nbsp;customer&nbsp;dict&nbsp;containing&nbsp;all&nbsp;the&nbsp;customer&nbsp;data</span></dd></dl>
+ <dl><dt><a name="-underscore_add"><strong>underscore_add</strong></a>(data)</dt><dd><span class="code">A&nbsp;small&nbsp;function&nbsp;to&nbsp;replace&nbsp;spaces&nbsp;with&nbsp;underscores<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;[string]&nbsp;--&nbsp;the&nbsp;passed&nbsp;string&nbsp;to&nbsp;modify<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;[string]&nbsp;--&nbsp;the&nbsp;passed&nbsp;string&nbsp;that&nbsp;has&nbsp;underscores&nbsp;instead&nbsp;of&nbsp;spaces</span></dd></dl>
+ <dl><dt><a name="-underscore_remove"><strong>underscore_remove</strong></a>(data)</dt><dd><span class="code">A&nbsp;small&nbsp;function&nbsp;to&nbsp;replace&nbsp;underscores&nbsp;with&nbsp;spaces<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;[string]&nbsp;--&nbsp;the&nbsp;passed&nbsp;string&nbsp;to&nbsp;modify<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;[string]&nbsp;--&nbsp;the&nbsp;passed&nbsp;string&nbsp;that&nbsp;has&nbsp;spaces&nbsp;instead&nbsp;of&nbsp;underscores</span></dd></dl>
+ <dl><dt><a name="-validate_attribute"><strong>validate_attribute</strong></a>(customer_dict, data_type)</dt><dd><span class="code">Validates&nbsp;whether&nbsp;the&nbsp;passed&nbsp;type&nbsp;is&nbsp;in&nbsp;the&nbsp;dictionary&nbsp;or&nbsp;not<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;customer_dict&nbsp;[dictionary]&nbsp;--&nbsp;contains&nbsp;the&nbsp;customer&nbsp;information<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data_type&nbsp;[string]&nbsp;--&nbsp;the&nbsp;passed&nbsp;entry&nbsp;of&nbsp;the&nbsp;data&nbsp;type<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;passed&nbsp;[boolean]&nbsp;--&nbsp;whether&nbsp;or&nbsp;not&nbsp;the&nbsp;passed&nbsp;value&nbsp;is&nbsp;contained&nbsp;in&nbsp;the&nbsp;dictionary&nbsp;keys</span></dd></dl>
+ <dl><dt><a name="-validate_char"><strong>validate_char</strong></a>(passed_input, data_type, check_type)</dt><dd><span class="code">Validates&nbsp;date&nbsp;or&nbsp;time<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;[string]&nbsp;--&nbsp;the&nbsp;user&nbsp;inputted&nbsp;data&nbsp;to&nbsp;test<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data_type&nbsp;[string]&nbsp;--&nbsp;the&nbsp;type&nbsp;of&nbsp;data&nbsp;to&nbsp;test<br>
+&nbsp;&nbsp;&nbsp;&nbsp;check_type&nbsp;[string]&nbsp;--&nbsp;whether&nbsp;the&nbsp;char&nbsp;list&nbsp;is&nbsp;run&nbsp;against&nbsp;allowed&nbsp;characters&nbsp;or&nbsp;disallowed&nbsp;characters<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;passed&nbsp;[boolean]&nbsp;--&nbsp;whether&nbsp;the&nbsp;test&nbsp;passed&nbsp;or&nbsp;not</span></dd></dl>
+ <dl><dt><a name="-validate_id"><strong>validate_id</strong></a>(value)</dt><dd><span class="code">Validates&nbsp;the&nbsp;inputted&nbsp;id&nbsp;to&nbsp;ensure&nbsp;it's&nbsp;a&nbsp;valid&nbsp;number<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;value&nbsp;[string]&nbsp;--&nbsp;passed&nbsp;input<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;true/false&nbsp;[boolean]&nbsp;--&nbsp;will&nbsp;return&nbsp;whether&nbsp;the&nbsp;passed&nbsp;value&nbsp;is&nbsp;a&nbsp;number&nbsp;or&nbsp;not</span></dd></dl>
+ <dl><dt><a name="-validate_input"><strong>validate_input</strong></a>(data)</dt><dd><span class="code">Validates&nbsp;that&nbsp;data&nbsp;was&nbsp;entered<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;[string]&nbsp;--&nbsp;passed&nbsp;user&nbsp;input<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;true/false&nbsp;[boolean]&nbsp;--&nbsp;returns&nbsp;true&nbsp;if&nbsp;the&nbsp;user&nbsp;entered&nbsp;something,&nbsp;false&nbsp;if&nbsp;not</span></dd></dl>
+ <dl><dt><a name="-validate_state"><strong>validate_state</strong></a>(data)</dt><dd><span class="code">Validates&nbsp;the&nbsp;user&nbsp;entered&nbsp;two&nbsp;uppercase&nbsp;letters<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;[string]&nbsp;--&nbsp;passed&nbsp;user&nbsp;input<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;true/false&nbsp;[boolean]&nbsp;--&nbsp;returns&nbsp;true&nbsp;if&nbsp;the&nbsp;user&nbsp;entered&nbsp;a&nbsp;valid&nbsp;state</span></dd></dl>
+ <dl><dt><a name="-validate_zipcode"><strong>validate_zipcode</strong></a>(data)</dt><dd><span class="code">Validates&nbsp;the&nbsp;user&nbsp;entered&nbsp;a&nbsp;valid&nbsp;four&nbsp;or&nbsp;five&nbsp;digit&nbsp;zip&nbsp;code<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;[string]&nbsp;--&nbsp;passed&nbsp;user&nbsp;input<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;true/false&nbsp;[boolean]&nbsp;--&nbsp;returns&nbsp;true&nbsp;if&nbsp;the&nbsp;user&nbsp;entered&nbsp;a&nbsp;valid&nbsp;zip&nbsp;code</span></dd></dl>
+</td></tr></table>
+</body></html>
