@@ -17,6 +17,10 @@ def add_customer(db, customer_dict):
     except:
         print("Failed to add customer to the mailings database\n")
 
+    # rename attributes to match with the database
+    customer_dict['f_name'] = customer_dict.pop('first_name')
+    customer_dict['l_name'] = customer_dict.pop('last_name')
+
     items = list(customer_dict.keys()) # get the list of attributes
     values = list(customer_dict.values()) # get the list of values entered
 
@@ -76,7 +80,7 @@ def build_name(customer):
         customer [dictionary] -- the customer dict containing all the customer data
     Returns:
         name [string] -- formatted first and last name"""
-    return f"{customer['f_name']} {customer['l_name']}"
+    return f"{customer['first_name']} {customer['last_name']}"
 
 def build_values(amount):
     """Builds a string that contains a specified number of %s to use for a query
@@ -152,6 +156,8 @@ def get_customer(db, table):
 
     result = result[0] # only return the first item since there should only be one
     result['id'] = result.pop(get_id_name(table)) # to make things simple, stick with calling id by one name until being used in sql statements
+    result['first_name'] = result.pop('f_name') # rename so it's more user friendly
+    result['last_name'] = result.pop('l_name') # rename so it's more user friendly
     
     return result
 
@@ -211,7 +217,7 @@ def get_input(data_type, required = True):
         if not required and not data:
             # if the input is not required and nothing was passed, then the check will pass
             data_ok = True
-        elif data_type == "f_name" or data_type == "l_name" or data_type == "name":
+        elif data_type == "first_name" or data_type == "last_name" or data_type == "name":
             data_ok = validate_char(data, data_type, "allowed")
         elif data_type == "company":
             data_ok = validate_input(data)
@@ -244,7 +250,7 @@ def import_data():
         with open("text_files/customer_export.txt") as file:
             for line in file:
                 data = line.replace("##", "").strip().split("|") # remove the pound signs, remove any extra spaces, and split the data up
-                data_dict = {"f_name": data[0], "l_name": data[1], "company": data[2], "address": data[3], "city": data[4], "county": data[5], "state": data[6], "zip": data[7], "primary_phone": data[8], "secondary_phone": data[9], "email": data[10]}
+                data_dict = {"first_name": data[0], "last_name": data[1], "company": data[2], "address": data[3], "city": data[4], "county": data[5], "state": data[6], "zip": data[7], "primary_phone": data[8], "secondary_phone": data[9], "email": data[10]}
                 
                 if not data[10] in emails: # use emails to keep track of duplicates
                     emails.append(data[10])
@@ -262,11 +268,17 @@ def modify_customer(db, id, table, data_type, data):
         table [string] -- the table being updated
         data_type [string] -- contains the attribute of which item the user is modifying
         data [string] -- the new value for the attribute"""
+    msg = f"The {underscore_remove(data_type)} has been " # set the data type before changing it to match the database
+
+    # make necessary changes to the data type to match the database
+    if data_type == "first_name":
+        data_type = "f_name"
+    elif data_type == "last_name":
+        data_type = "l_name"
+
     try:
         db.executeQuery(f"UPDATE {table} SET {data_type} = %s WHERE {get_id_name(table)} = %s", [data, id])
         db.conn.commit()
-
-        msg = f"The {underscore_remove(data_type)} has been "
 
         if data: # if removed, state so instead of printing "None"
             msg += f"modified to \"{data}\"\n"
@@ -353,7 +365,7 @@ def save_to_crm_db(db, customer):
     for line in customer:
         # now we need to add all the data from the dict
         query += f"({build_values(10)}),\n" # add %s for sanitization for every row + value
-        values += [line['f_name'], line['l_name'], line['address'], line['city'], line['state'], line['zip'], line['company'], line['primary_phone'], line['secondary_phone'], line['email']] # add all relavent values
+        values += [line['first_name'], line['last_name'], line['address'], line['city'], line['state'], line['zip'], line['company'], line['primary_phone'], line['secondary_phone'], line['email']] # add all relavent values
 
     query = f"{query[:-2]};" # remove the last comma and line break + add semicolin
 
@@ -468,7 +480,7 @@ def validate_char(passed_input, data_type, check_type):
         char_list = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ', '-']
     elif data_type == "email":
         char_list = ['!', '"', '\'', '#', '$', '%', '^', '&', '*', '(', ')', '=', '+', ',', '<', '>', '/', '?', ';', ':', '[', ']', '{', '}', '\\']
-    elif data_type == "f_name" or data_type == "l_name" or data_type == "name":
+    elif data_type == "first_name" or data_type == "last_name" or data_type == "name":
         char_list = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ', '\'', '-']
     elif data_type == "primary_phone" or data_type == "secondary_phone":
         char_list = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-']

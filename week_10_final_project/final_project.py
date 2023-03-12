@@ -22,11 +22,11 @@ while ask:
         else:
             print("\nThere was an issue reading the file. Please make sure the customer_export.txt is located in the text_files folder.\n")
     elif response == "2":
-        table = get_database()
+        table = get_database() # get the table the user would like to print
         
         print_db(db, table)
     elif response == "3":
-        required = ["f_name", "l_name", "company", "address", "city", "state", "zip", "primary_phone"]
+        required = ["first_name", "last_name", "company", "address", "city", "state", "zip", "primary_phone"]
         fields = list(required) + ["secondary_phone", "email"]
         customer = {}
         
@@ -38,7 +38,7 @@ while ask:
 
         add_customer(db, customer)
     elif response == "4":
-        required = {"crm_data": ["f_name", "l_name", "company", "address", "city", "state", "zip", "primary_phone"], "mailings": ["name", "company", "address"]}
+        required = {"crm_data": ["first_name", "last_name", "company", "address", "city", "state", "zip", "primary_phone"], "mailings": ["name", "company", "address"]}
         table = get_database() # get the table the user would like to edit
         customer_dict = get_customer(db, table) # get the customer object from the specified table
         data_type = get_attribute(customer_dict) # get the attribute the user wants to modify
@@ -46,9 +46,9 @@ while ask:
 
         modify_customer(db, customer_dict['id'], table, data_type, data)
     elif response == "5":
-        table = get_database()
-        customer_dict = get_customer(db, table)
-        response = input("Are you sure you want to delete this customer? (Y/N): ") # make sure the user wants to remove it
+        table = get_database() # get the table the user would like to edit
+        customer_dict = get_customer(db, table) # get the customer object from the specified table
+        response = input("Are you sure you want to delete this customer? (Y/N): ")
 
         if response.lower() == "y":
             remove_customer(db, customer_dict['id'], table)
