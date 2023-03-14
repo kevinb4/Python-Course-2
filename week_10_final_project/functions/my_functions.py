@@ -33,13 +33,21 @@ def add_customer(db, customer_dict):
     except:
         print("Failed to add customer to the crm database\n")
 
+def backup_file(path):
+    """Checks to see if the file exists and if it does, add the date so the file does not get overwritten
+    Arguments:
+        path [string] -- the path to the file"""
+    if os.path.exists(path):
+        shutil.copy2(path, f"{path}.backup{str(time.time())}")
+
 def build_address(customer):
     """Returns a string of concatenated address information
     Arguments:
         customer [dictionary] -- the customer dict containing all the customer data
     Returns:
         address [string] -- formatted address as written on a letter"""
-    return f"{customer['address']}, {customer['city']}, {customer['state']} {customer['zip']}"
+
+    return f"{customer.get('address')}, {customer.get('city')}, {customer.get('state')} {customer.get('zip')}"
 
 def build_dict(items):
     """Builds a string that contains the key and value that contain values
@@ -52,7 +60,7 @@ def build_dict(items):
     try:
         for key, value in items.items():
             if value != None and value != "": # don't print optional values that weren't entered
-                msg += f"{underscore_remove(key)}: {value}, "
+                msg += f"{underscore_remove(key).title()}: {value}, "
 
         return msg[:-2] # remove last comma and space
     except:
@@ -80,7 +88,7 @@ def build_name(customer):
         customer [dictionary] -- the customer dict containing all the customer data
     Returns:
         name [string] -- formatted first and last name"""
-    return f"{customer['first_name']} {customer['last_name']}"
+    return f"{customer.get('first_name', customer.get('f_name'))} {customer.get('last_name', customer.get('l_name'))}"
 
 def build_values(amount):
     """Builds a string that contains a specified number of %s to use for a query
@@ -98,13 +106,6 @@ def build_values(amount):
     except:
         print("Unable to convert the input to a string")
 
-def backup_file(path):
-    """Checks to see if the file exists and if it does, add the date so the file does not get overwritten
-    Arguments:
-        path [string] -- the path to the file"""
-    if os.path.exists(path):
-        shutil.copy2(path, f"{path}.backup{str(time.time())}")
-
 def get_attribute(customer_dict):
     """Gets the selecting from the user of which customer they'd like to edit
     Arguments:
@@ -115,7 +116,7 @@ def get_attribute(customer_dict):
 
     for key, value in customer_dict.items():
         if key != 'id': # can't modify the primary key
-            msg += f"{underscore_remove(key)}: {value}\n"
+            msg += f"{underscore_remove(key).title()}: {value}\n"
 
     data_type = input(f"{msg}\nEnter the name of the attribute you'd like to edit (eg. company): ")
     data_type_ok = False
@@ -155,10 +156,11 @@ def get_customer(db, table):
             item = input(f"Customer with the number {item} was not found, please enter a valid number: #")
 
     result = result[0] # only return the first item since there should only be one
-    result['id'] = result.pop(get_id_name(table)) # to make things simple, stick with calling id by one name until being used in sql statements
-    result['first_name'] = result.pop('f_name') # rename so it's more user friendly
-    result['last_name'] = result.pop('l_name') # rename so it's more user friendly
-    
+    replace = {get_id_name(table): "id", "f_name": "first_name", "l_name": "last_name"} # set keys to rename
+
+    for key in dict(result).keys(): # loop through keys and replace those that are in the replace dict above to retain indexes
+        result[replace.get(key, key)] = result.pop(key)
+
     return result
 
 def get_database():
@@ -231,7 +233,7 @@ def get_input(data_type, required = True):
             data_ok = validate_zipcode(data)
         elif data_type == "primary_phone" or data_type == "secondary_phone":
             data_ok = validate_char(data, data_type, "allowed")
-        elif data_type == "email":
+        elif data_type == "email_address":
             data_ok = validate_char(data, data_type, "disallowed")
 
         if not data_ok:
@@ -239,18 +241,20 @@ def get_input(data_type, required = True):
 
     return data
 
-def import_data():
+def import_data(path):
     """Imports data from a text file dump
+    Arguments:
+        path [string] -- the path of the file
     Returns:
         data_list/false [list/boolean] -- either returns the data if successful or false if not"""
     data_list = []
     emails = []
 
     try:
-        with open("text_files/customer_export.txt") as file:
+        with open(path) as file:
             for line in file:
                 data = line.replace("##", "").strip().split("|") # remove the pound signs, remove any extra spaces, and split the data up
-                data_dict = {"first_name": data[0], "last_name": data[1], "company": data[2], "address": data[3], "city": data[4], "county": data[5], "state": data[6], "zip": data[7], "primary_phone": data[8], "secondary_phone": data[9], "email": data[10]}
+                data_dict = {"first_name": data[0], "last_name": data[1], "company": data[2], "address": data[3], "city": data[4], "county": data[5], "state": data[6], "zip": data[7], "primary_phone": data[8], "secondary_phone": data[9], "email_address": data[10]}
                 
                 if not data[10] in emails: # use emails to keep track of duplicates
                     emails.append(data[10])
@@ -331,7 +335,13 @@ def print_short_db(db, table):
     Arguments:
         db [class] -- the db class used to execute the query
         table [string] -- the table to select the data from"""
-    results = db.executeSelectQuery(f"SELECT * FROM {table};")
+    query = "SELECT "
+    if table == "crm_data": # make it easier for users to understand
+        query += f"crm_id, f_name AS first_name, l_name AS last_name, address, city, state, zip, company, primary_phone, secondary_phone, email_address FROM {table};"
+    else:
+        query += f"* FROM {table};"
+
+    results = db.executeSelectQuery(query)
 
     for result in results:
         id = result.pop(get_id_name(table)) # to display the id separately
@@ -341,7 +351,8 @@ def remove_customer(db, id, table):
     """Removes a customer from the database
     Arguments:
         db [class] -- used to execute the query
-        id [int] -- the primary key of the customer"""
+        id [int] -- the primary key of the customer
+        table [string] -- the table to remove the customer from"""
     try:
         db.executeQuery(f"DELETE FROM {table} WHERE {get_id_name(table)} = %s", [id])
         db.conn.commit()
@@ -349,11 +360,11 @@ def remove_customer(db, id, table):
     except:
         print("Error removing the customer from the database\n")
 
-def save_to_crm_db(db, customer):
+def save_to_crm_db(db, customers):
     """Saves the passed data to the CRM database
     Arguments:
         db [class] -- the database class to execute the query
-        customer [dictionary] -- the customer dict containing all the customer data"""
+        customers [list] -- a list of all the customer dicts containing customer data"""
     # first we need to empty the current table
     db.executeQuery("TRUNCATE TABLE crm_data;")
     db.conn.commit()
@@ -362,10 +373,13 @@ def save_to_crm_db(db, customer):
     query = "INSERT INTO crm_data (f_name, l_name, address, city, state, zip, company, primary_phone, secondary_phone, email_address)\nVALUES"
     values = []
 
-    for line in customer:
-        # now we need to add all the data from the dict
-        query += f"({build_values(10)}),\n" # add %s for sanitization for every row + value
-        values += [line['first_name'], line['last_name'], line['address'], line['city'], line['state'], line['zip'], line['company'], line['primary_phone'], line['secondary_phone'], line['email']] # add all relavent values
+    try:
+        for line in customers:
+            # now we need to add all the data from the dict
+            query += f"({build_values(10)}),\n" # add %s for sanitization for every row + value
+            values += [line['first_name'], line['last_name'], line['address'], line['city'], line['state'], line['zip'], line['company'], line['primary_phone'], line['secondary_phone'], line['email_address']] # add all relavent values
+    except:
+        print("Failed parsing the crm data")
 
     query = f"{query[:-2]};" # remove the last comma and line break + add semicolin
 
@@ -375,43 +389,48 @@ def save_to_crm_db(db, customer):
     except:
         print("There was an issue saving the values to the drm_data database.")
 
-def save_to_CSV(path, customer):
+def save_to_CSV(path, customers):
     """Saves the data passed to a csv file
     Arguments:
         path [string] -- the file path to write to
-        customer [dictionary] -- the customer dict containing all the customer data"""
+        customers [list] -- a list of all the customer dicts containing customer data"""
     csv = ""
 
-    for item in customer[0]: # build the header row using the keys in the dict
-        csv += f"{item},"
-    
-    csv = csv[:-1] # remove the last comma
-
-    for data_dict in customer: # loop through the entire dict
-        csv += "\n" # add a new line for each row
-        for item in data_dict.values(): # for each row in the data, add each value with a comma
+    try: # put parsing data in a try in case invalid data is passed
+        for item in customers[0]: # build the header row using the keys in the dict
             csv += f"{item},"
 
         csv = csv[:-1] # remove the last comma
+        for data_dict in customers: # loop through the entire dict
+            csv += "\n" # add a new line for each row
+            for item in data_dict.values(): # for each row in the data, add each value with a comma
+                csv += f"{item},"
+
+            csv = csv[:-1] # remove the last comma
+    except:
+        print("Failed to parse data")
+
 
     backup_file(path) # make sure not to overwrite the file
-    with open(path, "w") as csv_output:
-        csv_output.write(csv)
+    if csv: # no point in writing if no data was passed
+        with open(path, "w") as csv_output:
+            csv_output.write(csv)
 
 def save_to_JSON(path, data):
     """Saves the passed data to a JSON file
     Arguments:
         path [string] -- the file path to write to
-        customer [dictionary] -- the customer dict containing all the customer data"""
+        customers [list] -- a list of all the customer dicts containing customer data"""
     backup_file(path) # make sure not to overwrite the file
-    with open(path, "w") as json_output:
-        json.dump(data, json_output)
+    if data: # no point in writing if no data was passed
+        with open(path, "w") as json_output:
+            json.dump(data, json_output)
 
-def save_to_mailings_db(db, customer):
+def save_to_mailings_db(db, customers):
     """Saves the passed data to the mailings database
     Arguments:
         db [class] -- the database class to execute the query
-        customer [dictionary] -- the customer dict containing all the customer data"""
+        customers [list] -- a list of all the customer dicts containing customer data"""
     # first we need to empty the current table
     db.executeQuery("TRUNCATE TABLE mailings;")
     db.conn.commit()
@@ -420,7 +439,7 @@ def save_to_mailings_db(db, customer):
     query = "INSERT INTO mailings (name, company, address)\nVALUES"
     values = []
 
-    for line in customer:
+    for line in customers:
         # now we need to add all the data from the dict
         query += f"({build_values(3)}),\n" # add %s for sanitization for every row + value
         values += [build_name(line), line['company'], f"{build_address(line)}"] # add all relavent values
@@ -457,9 +476,13 @@ def validate_attribute(customer_dict, data_type):
     Returns:
         passed [boolean] -- whether or not the passed value is contained in the dictionary keys"""
     passed = False
-    if data_type in customer_dict.keys():
-        if data_type != 'id': # can't modify the primary key
-            passed = True
+
+    try:
+        if data_type in customer_dict.keys():
+            if data_type != 'id': # can't modify the primary key
+                passed = True
+    except:
+        print("Failed checking attributes")
     
     return passed
 
@@ -478,7 +501,7 @@ def validate_char(passed_input, data_type, check_type):
         char_list = ['!', '"', '\'', '@', '$', '%', '^', '&', '*', '_', '=', '+', '<', '>', '?', ';', '[', ']', '{', '}']
     elif data_type == "city":
         char_list = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ', '-']
-    elif data_type == "email":
+    elif data_type == "email_address":
         char_list = ['!', '"', '\'', '#', '$', '%', '^', '&', '*', '(', ')', '=', '+', ',', '<', '>', '/', '?', ';', ':', '[', ']', '{', '}', '\\']
     elif data_type == "first_name" or data_type == "last_name" or data_type == "name":
         char_list = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ', '\'', '-']
@@ -514,9 +537,13 @@ def validate_id(value):
         value [string] -- passed input
     Returns:
         true/false [boolean] -- will return whether the passed value is a number or not"""
-    if value.isdigit():
-        return True
-    else:
+    try:
+        if value.isdigit():
+            return True
+        else:
+            return False
+    except:
+        print("Incorrect data passed to validate")
         return False
 
 def validate_input(data):
@@ -536,9 +563,13 @@ def validate_state(data):
         data [string] -- passed user input
     Returns:
         true/false [boolean] -- returns true if the user entered a valid state"""
-    if data.isalpha() and data.isupper() and len(data) == 2:
-        return True
-    else:
+    try:
+        if data.isalpha() and data.isupper() and len(data) == 2:
+            return True
+        else:
+            return False
+    except:
+        print("Incorrect data passed to validate")
         return False
     
 def validate_zipcode(data):
@@ -547,7 +578,11 @@ def validate_zipcode(data):
         data [string] -- passed user input
     Returns:
         true/false [boolean] -- returns true if the user entered a valid zip code"""
-    if data.isnumeric() and (len(data) == 4 or len(data) == 5):
-        return True
-    else:
+    try:
+        if data.isnumeric() and (len(data) == 4 or len(data) == 5):
+            return True
+        else:
+            return False
+    except:
+        print("Incorrect data passed to validate")
         return False

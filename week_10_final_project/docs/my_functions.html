@@ -82,7 +82,9 @@ Arguments:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;required&nbsp;[boolean]&nbsp;--&nbsp;whether&nbsp;or&nbsp;not&nbsp;the&nbsp;type&nbsp;of&nbsp;data&nbsp;is&nbsp;required<br>
 Returns:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;[string]&nbsp;--&nbsp;the&nbsp;verified&nbsp;data</span></dd></dl>
- <dl><dt><a name="-import_data"><strong>import_data</strong></a>()</dt><dd><span class="code">Imports&nbsp;data&nbsp;from&nbsp;a&nbsp;text&nbsp;file&nbsp;dump<br>
+ <dl><dt><a name="-import_data"><strong>import_data</strong></a>(path)</dt><dd><span class="code">Imports&nbsp;data&nbsp;from&nbsp;a&nbsp;text&nbsp;file&nbsp;dump<br>
+Arguments:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;path&nbsp;[string]&nbsp;--&nbsp;the&nbsp;path&nbsp;of&nbsp;the&nbsp;file<br>
 Returns:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;data_list/false&nbsp;[list/boolean]&nbsp;--&nbsp;either&nbsp;returns&nbsp;the&nbsp;data&nbsp;if&nbsp;successful&nbsp;or&nbsp;false&nbsp;if&nbsp;not</span></dd></dl>
  <dl><dt><a name="-modify_customer"><strong>modify_customer</strong></a>(db, id, table, data_type, data)</dt><dd><span class="code">Modifies&nbsp;the&nbsp;current&nbsp;customer<br>
@@ -103,23 +105,24 @@ Arguments:<br>
  <dl><dt><a name="-remove_customer"><strong>remove_customer</strong></a>(db, id, table)</dt><dd><span class="code">Removes&nbsp;a&nbsp;customer&nbsp;from&nbsp;the&nbsp;database<br>
 Arguments:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;db&nbsp;[class]&nbsp;--&nbsp;used&nbsp;to&nbsp;execute&nbsp;the&nbsp;query<br>
-&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;[int]&nbsp;--&nbsp;the&nbsp;primary&nbsp;key&nbsp;of&nbsp;the&nbsp;customer</span></dd></dl>
- <dl><dt><a name="-save_to_CSV"><strong>save_to_CSV</strong></a>(path, customer)</dt><dd><span class="code">Saves&nbsp;the&nbsp;data&nbsp;passed&nbsp;to&nbsp;a&nbsp;csv&nbsp;file<br>
+&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;[int]&nbsp;--&nbsp;the&nbsp;primary&nbsp;key&nbsp;of&nbsp;the&nbsp;customer<br>
+&nbsp;&nbsp;&nbsp;&nbsp;table&nbsp;[string]&nbsp;--&nbsp;the&nbsp;table&nbsp;to&nbsp;remove&nbsp;the&nbsp;customer&nbsp;from</span></dd></dl>
+ <dl><dt><a name="-save_to_CSV"><strong>save_to_CSV</strong></a>(path, customers)</dt><dd><span class="code">Saves&nbsp;the&nbsp;data&nbsp;passed&nbsp;to&nbsp;a&nbsp;csv&nbsp;file<br>
 Arguments:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;path&nbsp;[string]&nbsp;--&nbsp;the&nbsp;file&nbsp;path&nbsp;to&nbsp;write&nbsp;to<br>
-&nbsp;&nbsp;&nbsp;&nbsp;customer&nbsp;[dictionary]&nbsp;--&nbsp;the&nbsp;customer&nbsp;dict&nbsp;containing&nbsp;all&nbsp;the&nbsp;customer&nbsp;data</span></dd></dl>
+&nbsp;&nbsp;&nbsp;&nbsp;customers&nbsp;[list]&nbsp;--&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;the&nbsp;customer&nbsp;dicts&nbsp;containing&nbsp;customer&nbsp;data</span></dd></dl>
  <dl><dt><a name="-save_to_JSON"><strong>save_to_JSON</strong></a>(path, data)</dt><dd><span class="code">Saves&nbsp;the&nbsp;passed&nbsp;data&nbsp;to&nbsp;a&nbsp;JSON&nbsp;file<br>
 Arguments:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;path&nbsp;[string]&nbsp;--&nbsp;the&nbsp;file&nbsp;path&nbsp;to&nbsp;write&nbsp;to<br>
-&nbsp;&nbsp;&nbsp;&nbsp;customer&nbsp;[dictionary]&nbsp;--&nbsp;the&nbsp;customer&nbsp;dict&nbsp;containing&nbsp;all&nbsp;the&nbsp;customer&nbsp;data</span></dd></dl>
- <dl><dt><a name="-save_to_crm_db"><strong>save_to_crm_db</strong></a>(db, customer)</dt><dd><span class="code">Saves&nbsp;the&nbsp;passed&nbsp;data&nbsp;to&nbsp;the&nbsp;CRM&nbsp;database<br>
+&nbsp;&nbsp;&nbsp;&nbsp;customers&nbsp;[list]&nbsp;--&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;the&nbsp;customer&nbsp;dicts&nbsp;containing&nbsp;customer&nbsp;data</span></dd></dl>
+ <dl><dt><a name="-save_to_crm_db"><strong>save_to_crm_db</strong></a>(db, customers)</dt><dd><span class="code">Saves&nbsp;the&nbsp;passed&nbsp;data&nbsp;to&nbsp;the&nbsp;CRM&nbsp;database<br>
 Arguments:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;db&nbsp;[class]&nbsp;--&nbsp;the&nbsp;database&nbsp;class&nbsp;to&nbsp;execute&nbsp;the&nbsp;query<br>
-&nbsp;&nbsp;&nbsp;&nbsp;customer&nbsp;[dictionary]&nbsp;--&nbsp;the&nbsp;customer&nbsp;dict&nbsp;containing&nbsp;all&nbsp;the&nbsp;customer&nbsp;data</span></dd></dl>
- <dl><dt><a name="-save_to_mailings_db"><strong>save_to_mailings_db</strong></a>(db, customer)</dt><dd><span class="code">Saves&nbsp;the&nbsp;passed&nbsp;data&nbsp;to&nbsp;the&nbsp;mailings&nbsp;database<br>
+&nbsp;&nbsp;&nbsp;&nbsp;customers&nbsp;[list]&nbsp;--&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;the&nbsp;customer&nbsp;dicts&nbsp;containing&nbsp;customer&nbsp;data</span></dd></dl>
+ <dl><dt><a name="-save_to_mailings_db"><strong>save_to_mailings_db</strong></a>(db, customers)</dt><dd><span class="code">Saves&nbsp;the&nbsp;passed&nbsp;data&nbsp;to&nbsp;the&nbsp;mailings&nbsp;database<br>
 Arguments:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;db&nbsp;[class]&nbsp;--&nbsp;the&nbsp;database&nbsp;class&nbsp;to&nbsp;execute&nbsp;the&nbsp;query<br>
-&nbsp;&nbsp;&nbsp;&nbsp;customer&nbsp;[dictionary]&nbsp;--&nbsp;the&nbsp;customer&nbsp;dict&nbsp;containing&nbsp;all&nbsp;the&nbsp;customer&nbsp;data</span></dd></dl>
+&nbsp;&nbsp;&nbsp;&nbsp;customers&nbsp;[list]&nbsp;--&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;the&nbsp;customer&nbsp;dicts&nbsp;containing&nbsp;customer&nbsp;data</span></dd></dl>
  <dl><dt><a name="-underscore_add"><strong>underscore_add</strong></a>(data)</dt><dd><span class="code">A&nbsp;small&nbsp;function&nbsp;to&nbsp;replace&nbsp;spaces&nbsp;with&nbsp;underscores<br>
 Arguments:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;[string]&nbsp;--&nbsp;the&nbsp;passed&nbsp;string&nbsp;to&nbsp;modify<br>

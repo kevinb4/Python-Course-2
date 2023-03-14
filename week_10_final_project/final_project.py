@@ -10,7 +10,7 @@ while ask:
     response = input("What would you like to do? Enter the number of the item you want:\n1. Import a new data file\n2. Show data currently in a database\n3. Add a record to the databases\n4. Edit a record\n5. Remove a record\n6. Exit program\n> ")
 
     if response == "1":
-        data = import_data()
+        data = import_data("text_files/customer_export.txt")
 
         if data:
             save_to_CSV("text_files/customer_export.csv", data)
@@ -23,14 +23,14 @@ while ask:
             print("\nThere was an issue reading the file. Please make sure the customer_export.txt is located in the text_files folder.\n")
     elif response == "2":
         table = get_database() # get the table the user would like to print
-        
+
         print_db(db, table)
     elif response == "3":
         required = ["first_name", "last_name", "company", "address", "city", "state", "zip", "primary_phone"]
-        fields = list(required) + ["secondary_phone", "email"]
+        fields = list(required) + ["secondary_phone", "email_address"]
         customer = {}
         
-        for item in fields: # loop through all possible fields
+        for item in fields: # loop through all possible fields and gather data
             data = get_input(item, item in required)
             
             if data: # don't add optional items that weren't entered
@@ -48,7 +48,15 @@ while ask:
     elif response == "5":
         table = get_database() # get the table the user would like to edit
         customer_dict = get_customer(db, table) # get the customer object from the specified table
-        response = input("Are you sure you want to delete this customer? (Y/N): ")
+        name = ""
+
+        # get the name of the customer to make it clear the user selected the right one
+        if customer_dict.get('name'):
+            name = customer_dict['name']
+        elif customer_dict.get('first_name'):
+            name = build_name(customer_dict)
+
+        response = input(f"Are you sure you want to delete the customer '{name}'? (Y/N): ")
 
         if response.lower() == "y":
             remove_customer(db, customer_dict['id'], table)
