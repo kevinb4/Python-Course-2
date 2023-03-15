@@ -13,9 +13,9 @@ def add_customer(db, customer_dict):
         # use the build functions to execute the necessary items
         db.executeQuery(f"INSERT INTO mailings (name, company, address) VALUES ({build_values(3)});", [build_name(customer_dict), customer_dict['company'], build_address(customer_dict)])
         db.conn.commit()
-        print("Successfully added customer to the mailings database\n")
+        print("\nSuccessfully added customer to the mailings database")
     except:
-        print("Failed to add customer to the mailings database\n")
+        print("\nFailed to add customer to the mailings database")
 
     # rename attributes to match with the database
     customer_dict['f_name'] = customer_dict.pop('first_name')
@@ -272,7 +272,7 @@ def modify_customer(db, id, table, data_type, data):
         table [string] -- the table being updated
         data_type [string] -- contains the attribute of which item the user is modifying
         data [string] -- the new value for the attribute"""
-    msg = f"The {underscore_remove(data_type)} has been " # set the data type before changing it to match the database
+    msg = f"\nThe {underscore_remove(data_type)} has been " # set the data type before changing it to match the database
 
     # make necessary changes to the data type to match the database
     if data_type == "first_name":
@@ -291,7 +291,7 @@ def modify_customer(db, id, table, data_type, data):
 
         print(msg)
     except:
-        print("Error saving modified value to database\n")
+        print("\nError saving modified value to database\n")
 
 def print_db(db, table):
     """Prints out all rows in the database table
@@ -356,9 +356,9 @@ def remove_customer(db, id, table):
     try:
         db.executeQuery(f"DELETE FROM {table} WHERE {get_id_name(table)} = %s", [id])
         db.conn.commit()
-        print("The customer has been removed\n")
+        print("\nThe customer has been removed\n")
     except:
-        print("Error removing the customer from the database\n")
+        print("\nError removing the customer from the database\n")
 
 def save_to_crm_db(db, customers):
     """Saves the passed data to the CRM database
