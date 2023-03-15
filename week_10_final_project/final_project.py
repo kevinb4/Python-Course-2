@@ -13,8 +13,8 @@ while ask:
         data = import_data("text_files/customer_export.txt")
 
         if data:
-            save_to_CSV("text_files/customer_export.csv", data)
-            save_to_JSON("text_files/customer_export.json", data)
+            save_to_CSV("text_files/customer.csv", data)
+            save_to_JSON("text_files/customer.json", data)
             save_to_crm_db(db, data)
             save_to_mailings_db(db, data)
 
